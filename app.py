@@ -133,6 +133,15 @@ def flagToggleVerification(team, flagContent, flagLocation, box):
 
 @app.route("/flag", methods = ['POST'])
 def box1Toggle():
+    global box1Owned
+    global box2Owned
+    global box3Owned
+    global box4Owned
+    global box5Owned
+    global box6Owned
+    global box7Owned
+    global box8Owned
+
     global flagContentbox1
     global flagLocationbox1
     global flagContentbox2
@@ -174,6 +183,7 @@ def box1Toggle():
                     flagLocationbox1 = flagLocation
                     box1Owned = True
                     print(f'[+] Red team succesfully uploaded flag onto machine')
+                    return f'[+] Red team succesfully uploaded flag onto machine'
         elif box == 'box2':
             if team == 'blue':
                 if flagContentbox2 != '' and flagLocationbox2 != '':
@@ -193,6 +203,7 @@ def box1Toggle():
                     flagLocationbox2 = flagLocation
                     box2Owned = True
                     print(f'[+] Red team succesfully uploaded flag onto machine')
+                    return f'[+] Red team succesfully uploaded flag onto machine'
         elif box == 'box3':
             if team == 'blue':
                 if flagContentbox3 != '' and flagLocationbox3 != '':
@@ -212,6 +223,7 @@ def box1Toggle():
                     flagLocationbox3 = flagLocation
                     box3Owned = True
                     print(f'[+] Red team succesfully uploaded flag onto machine')
+                    return f'[+] Red team succesfully uploaded flag onto machine'
         elif box == 'box4':
             if team == 'blue':
                 if flagContentbox4 != '' and flagLocationbox4 != '':
@@ -231,6 +243,7 @@ def box1Toggle():
                     flagLocationbox4 = flagLocation
                     box4Owned = True
                     print(f'[+] Red team succesfully uploaded flag onto machine')
+                    return f'[+] Red team succesfully uploaded flag onto machine'
         elif box == 'box5':
             if team == 'blue':
                 if flagContentbox5 != '' and flagLocationbox5 != '':
@@ -250,6 +263,7 @@ def box1Toggle():
                     flagLocationbox5 = flagLocation
                     box5Owned = True
                     print(f'[+] Red team succesfully uploaded flag onto machine')
+                    return f'[+] Red team succesfully uploaded flag onto machine'
         elif box == 'box6':
             if team == 'blue':
                 if flagContentbox6 != '' and flagLocationbox6 != '':
@@ -269,6 +283,7 @@ def box1Toggle():
                     flagLocationbox6 = flagLocation
                     box6Owned = True
                     print(f'[+] Red team succesfully uploaded flag onto machine')
+                    return f'[+] Red team succesfully uploaded flag onto machine'
         elif box == 'box7':
             if team == 'blue':
                 if flagContentbox7 != '' and flagLocationbox7 != '':
@@ -288,6 +303,7 @@ def box1Toggle():
                     flagLocationbox7 = flagLocation
                     box7Owned = True
                     print(f'[+] Red team succesfully uploaded flag onto machine')
+                    return f'[+] Red team succesfully uploaded flag onto machine'
         elif box == 'box8':
             if team == 'blue':
                 if flagContentbox8 != '' and flagLocationbox8 != '':
@@ -306,12 +322,22 @@ def box1Toggle():
                     flagContentbox8 = flagContent
                     flagLocationbox8 = flagLocation
                     box8Owned = True
-                    print(f'[+] Red team succesfully uploaded flag onto machine')          
+                    print(f'[+] Red team succesfully uploaded flag onto machine')  
+                    return f'[+] Red team succesfully uploaded flag onto machine'        
 
 def pointsUpdated():
     global redTeamScore
     global blueTeamScore
     global roundCount
+
+    global box1Owned
+    global box2Owned
+    global box3Owned
+    global box4Owned
+    global box5Owned
+    global box6Owned
+    global box7Owned
+    global box8Owned
 
     if(box1Owned):
         redTeamScore += 1
@@ -360,5 +386,5 @@ if __name__ == '__main__':
     pointsUpdater = BackgroundScheduler()
     pointsUpdater.add_job(func=pointsUpdated, trigger="interval", seconds=60)
     pointsUpdater.start()
-    app.run()
+    app.run(host='0.0.0.0', port=80)
     atexit.register(lambda: pointsUpdater.shutdown())
