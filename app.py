@@ -9,31 +9,31 @@ import subprocess
 
 app = Flask(__name__)
 
-flagContentbox1 = '' #update for all boxes
-flagLocationbox1 = '' #update for all boxes
-flagContentbox2 = '' #update for all boxes
-flagLocationbox2 = '' #update for all boxes
-flagContentbox3 = '' #update for all boxes
-flagLocationbox3 = '' #update for all boxes
-flagContentbox4 = '' #update for all boxes
-flagLocationbox4 = '' #update for all boxes
-flagContentbox5 = '' #update for all boxes
-flagLocationbox5 = '' #update for all boxes
-flagContentbox6 = '' #update for all boxes
-flagLocationbox6 = '' #update for all boxes
-flagContentbox7 = '' #update for all boxes
-flagLocationbox7 = '' #update for all boxes
-flagContentbox8 = '' #update for all boxes
-flagLocationbox8 = '' #update for all boxes
+houseofrepresentativesFlagContent = '' #update for all boxes
+houseofrepresentativesFlagLocation = '' #update for all boxes
+supremeCourtFlagContent = '' #update for all boxes
+supremeCourtFlagLocation = '' #update for all boxes
+federalReservesFlagContent = '' #update for all boxes
+federalReservesFlagLocation = '' #update for all boxes
+nationalArchivesFlagContent = '' #update for all boxes
+nationalArchivesFlagLocation = '' #update for all boxes
+federalTradeCommissionsFlagContent = '' #update for all boxes
+federalTradeCommissionsFlagLocation = '' #update for all boxes
+area51FlagContent = '' #update for all boxes
+area51FlagLocation = '' #update for all boxes
+pentagonFlagContent = '' #update for all boxes
+pentagonFlagLocation = '' #update for all boxes
+whiteHouseFlagContent = '' #update for all boxes
+whiteHouseFlagLocation = '' #update for all boxes
 
-box1Owned = False
-box2Owned = False
-box3Owned = False
-box4Owned = False
-box5Owned = False
-box6Owned = False
-box7Owned = False
-box8Owned = False
+houseofrepresentativesOwned = False
+supremeCourtOwned = False
+federalReservesOwned = False
+nationalArchivesOwned = False
+federalTradeCommissionsOwned = False
+area51Owned = False
+pentagonOwned = False
+whiteHouseOwned = False
 
 redTeamScore = 0
 blueTeamScore = 0
@@ -47,35 +47,35 @@ roundCount = 0
 @app.route("/", methods = ['GET'])
 def homePage():
     return render_template("index.html", redTeamScore=redTeamScore, blueTeamScore=blueTeamScore, redTeamColor=redColorHexCode, blueTeamColor=blueColorHexCode, 
-                           roundCount=roundCount, box1Owned=box1Owned, box2Owned=box2Owned, box3Owned=box3Owned, box4Owned=box4Owned,
-                           box5Owned=box5Owned, box6Owned=box6Owned, box7Owned=box7Owned, box8Owned=box8Owned)
+                           roundCount=roundCount, houseofrepresentativesOwned=houseofrepresentativesOwned, supremeCourtOwned=supremeCourtOwned, federalReservesOwned=federalReservesOwned, nationalArchivesOwned=nationalArchivesOwned,
+                           federalTradeCommissionsOwned=federalTradeCommissionsOwned, area51Owned=area51Owned, pentagonOwned=pentagonOwned, whiteHouseOwned=whiteHouseOwned)
 #update this shit
 def flagToggleVerification(team, flagContent, flagLocation, box):
-    global box1Owned
-    global box2Owned
-    global box3Owned
-    global box4Owned
-    global box5Owned
-    global box6Owned
-    global box7Owned
-    global box8Owned
+    global houseofrepresentativesOwned
+    global supremeCourtOwned
+    global federalReservesOwned
+    global nationalArchivesOwned
+    global federalTradeCommissionsOwned
+    global area51Owned
+    global pentagonOwned
+    global whiteHouseOwned
 
-    global flagContentbox1
-    global flagLocationbox1
-    global flagContentbox2
-    global flagLocationbox2
-    global flagContentbox3
-    global flagLocationbox3
-    global flagContentbox4
-    global flagLocationbox4
-    global flagContentbox5
-    global flagLocationbox5
-    global flagContentbox6
-    global flagLocationbox6
-    global flagContentbox7
-    global flagLocationbox7
-    global flagContentbox8
-    global flagLocationbox8
+    global houseofrepresentativesFlagContent
+    global houseofrepresentativesFlagLocation
+    global supremeCourtFlagContent
+    global supremeCourtFlagLocation
+    global federalReservesFlagContent
+    global federalReservesFlagLocation
+    global nationalArchivesFlagContent
+    global nationalArchivesFlagLocation
+    global federalTradeCommissionsFlagContent
+    global federalTradeCommissionsFlagLocation
+    global area51FlagContent
+    global area51FlagLocation
+    global pentagonFlagContent
+    global pentagonFlagLocation
+    global whiteHouseFlagContent
+    global whiteHouseFlagLocation
 
     #there might be an issue here with local variabliization of the parametrs probably will not be referring to the same parameter
     if team == 'red' and flagContent == '' and flagLocation == '':
@@ -83,22 +83,22 @@ def flagToggleVerification(team, flagContent, flagLocation, box):
             flagLocation = request.form['location']
             print(f'[+] Red Team Succesfully Added a Flag onto {box}') # update the name of the boxes
             print(f'{flagContent} at {flagLocation}')
-            if box == 'box1':
-                box1Owned = True
-            elif box == 'box2':
-                box2Owned = True
-            elif box == 'box3':
-                box3Owned = True
-            elif box == 'box4':
-                box4Owned = True
-            elif box == 'box5':
-                box5Owned = True
-            elif box == 'box6':
-                box6Owned = True
-            elif box == 'box7':
-                box7Owned = True
-            elif box == 'box8':
-                box8Owned = True
+            if box == 'houseofrepresentatives':
+                houseofrepresentativesOwned = True
+            elif box == 'supremecourt':
+                supremeCourtOwned = True
+            elif box == 'federalreserves':
+                federalReservesOwned = True
+            elif box == 'nationalarchives':
+                nationalArchivesOwned = True
+            elif box == 'federaltradecommissions':
+                federalTradeCommissionsOwned = True
+            elif box == 'area51':
+                area51Owned = True
+            elif box == 'pentagon':
+                pentagonOwned = True
+            elif box == 'whitehouse':
+                whiteHouseOwned = True
             return f'[+] Red Team Succesfully Added a Flag onto {box}'
     elif team == 'blue' and flagContent != '' and flagLocation != '':
         removalflagContent = request.form['flag']
@@ -107,22 +107,22 @@ def flagToggleVerification(team, flagContent, flagLocation, box):
             flagContent = ''
             flagLocation = ''
             print(f'[+] Blue Team Succesfully Removed a Flag from {box}') # update the name of the boxes
-            if box == 'box1':
-                box1Owned = False
-            elif box == 'box2':
-                box2Owned = False
-            elif box == 'box3':
-                box3Owned = False
-            elif box == 'box4':
-                box4Owned = False
-            elif box == 'box5':
-                box5Owned = False
-            elif box == 'box6':
-                box6Owned = False
-            elif box == 'box7':
-                box7Owned = False
-            elif box == 'box8':
-                box8Owned = False
+            if box == 'houseofrepresentatives':
+                houseofrepresentativesOwned = False
+            elif box == 'supremecourt':
+                supremeCourtOwned = False
+            elif box == 'federalreserves':
+                federalReservesOwned = False
+            elif box == 'nationalarchives':
+                nationalArchivesOwned = False
+            elif box == 'federaltradecommissions':
+                federalTradeCommissionsOwned = False
+            elif box == 'area51':
+                area51Owned = False
+            elif box == 'pentagon':
+                pentagonOwned = False
+            elif box == 'whitehouse':
+                whiteHouseOwned = False
             return f'[+] Blue Team Succesfully Removed a Flag from {box}'
         else:
             return '[-] Thats not the right flag try again'
@@ -132,196 +132,196 @@ def flagToggleVerification(team, flagContent, flagLocation, box):
         return f'[-] Flag does not exist on the {box}.  Removal of Flag Denied!'
 
 @app.route("/flag", methods = ['POST'])
-def box1Toggle():
-    global box1Owned
-    global box2Owned
-    global box3Owned
-    global box4Owned
-    global box5Owned
-    global box6Owned
-    global box7Owned
-    global box8Owned
+def houseofrepresentativesToggle():
+    global houseofrepresentativesOwned
+    global supremeCourtOwned
+    global federalReservesOwned
+    global nationalArchivesOwned
+    global federalTradeCommissionsOwned
+    global area51Owned
+    global pentagonOwned
+    global whiteHouseOwned
 
-    global flagContentbox1
-    global flagLocationbox1
-    global flagContentbox2
-    global flagLocationbox2
-    global flagContentbox3
-    global flagLocationbox3
-    global flagContentbox4
-    global flagLocationbox4
-    global flagContentbox5
-    global flagLocationbox5
-    global flagContentbox6
-    global flagLocationbox6
-    global flagContentbox7
-    global flagLocationbox7
-    global flagContentbox8
-    global flagLocationbox8
+    global houseofrepresentativesFlagContent
+    global houseofrepresentativesFlagLocation
+    global supremeCourtFlagContent
+    global supremeCourtFlagLocation
+    global federalReservesFlagContent
+    global federalReservesFlagLocation
+    global nationalArchivesFlagContent
+    global nationalArchivesFlagLocation
+    global federalTradeCommissionsFlagContent
+    global federalTradeCommissionsFlagLocation
+    global area51FlagContent
+    global area51FlagLocation
+    global pentagonFlagContent
+    global pentagonFlagLocation
+    global whiteHouseFlagContent
+    global whiteHouseFlagLocation
 
     if request.method == 'POST':
         team = request.form['team']
         box = request.form['hostname']
         flagContent = request.form['flag']
         flagLocation = request.form['location']
-        if box == 'box1':
+        if box == 'houseofrepresentatives':
             if team == 'blue':
-                if flagContentbox1 != '' and flagLocationbox1 != '':
-                    if flagContent == flagContentbox1 and flagLocation == flagLocationbox1:
-                        flagContentbox1 = ''
-                        flagLocationbox1 = ''
-                        box1Owned = False
+                if houseofrepresentativesFlagContent != '' and houseofrepresentativesFlagLocation != '':
+                    if flagContent == houseofrepresentativesFlagContent and flagLocation == houseofrepresentativesFlagLocation:
+                        houseofrepresentativesFlagContent = ''
+                        houseofrepresentativesFlagLocation = ''
+                        houseofrepresentativesOwned = False
                         print('[+] Blue Team Removed Flag on machine')
                         return '[+] Blue Team Removed Flag on machine'
                     else:
                         return '[+] Try again seems like that was not correct'
             elif team == 'red':
-                if flagContentbox1 != '' and flagLocationbox1 != '':
+                if houseofrepresentativesFlagContent != '' and houseofrepresentativesFlagLocation != '':
                     return '[+] Flag Already Exists on Machine'
                 else:
-                    flagContentbox1 = flagContent
-                    flagLocationbox1 = flagLocation
-                    box1Owned = True
+                    houseofrepresentativesFlagContent = flagContent
+                    houseofrepresentativesFlagLocation = flagLocation
+                    houseofrepresentativesOwned = True
                     print(f'[+] Red team succesfully uploaded flag onto machine')
                     return f'[+] Red team succesfully uploaded flag onto machine'
-        elif box == 'box2':
+        elif box == 'supremecourt':
             if team == 'blue':
-                if flagContentbox2 != '' and flagLocationbox2 != '':
-                    if flagContent == flagContentbox2 and flagLocation == flagLocationbox2:
-                        flagContentbox2 = ''
-                        flagLocationbox2 = ''
-                        box2Owned = False
+                if supremeCourtFlagContent != '' and supremeCourtFlagLocation != '':
+                    if flagContent == supremeCourtFlagContent and flagLocation == supremeCourtFlagLocation:
+                        supremeCourtFlagContent = ''
+                        supremeCourtFlagLocation = ''
+                        supremeCourtOwned = False
                         print('[+] Blue Team Removed Flag on machine')
                         return '[+] Blue Team Removed Flag on machine'
                     else:
                         return '[+] Try again seems like that was not correct'
             elif team == 'red':
-                if flagContentbox2 != '' and flagLocationbox2 != '':
+                if supremeCourtFlagContent != '' and supremeCourtFlagLocation != '':
                     return '[+] Flag Already Exists on Machine'
                 else:
-                    flagContentbox2 = flagContent
-                    flagLocationbox2 = flagLocation
-                    box2Owned = True
+                    supremeCourtFlagContent = flagContent
+                    supremeCourtFlagLocation = flagLocation
+                    supremeCourtOwned = True
                     print(f'[+] Red team succesfully uploaded flag onto machine')
                     return f'[+] Red team succesfully uploaded flag onto machine'
-        elif box == 'box3':
+        elif box == 'federalreserves':
             if team == 'blue':
-                if flagContentbox3 != '' and flagLocationbox3 != '':
-                    if flagContent == flagContentbox3 and flagLocation == flagLocationbox3:
-                        flagContentbox3 = ''
-                        flagLocationbox3 = ''
-                        box3Owned = False
+                if federalReservesFlagContent != '' and federalReservesFlagLocation != '':
+                    if flagContent == federalReservesFlagContent and flagLocation == federalReservesFlagLocation:
+                        federalReservesFlagContent = ''
+                        federalReservesFlagLocation = ''
+                        federalReservesOwned = False
                         print('[+] Blue Team Removed Flag on machine')
                         return '[+] Blue Team Removed Flag on machine'
                     else:
                         return '[+] Try again seems like that was not correct'
             elif team == 'red':
-                if flagContentbox3 != '' and flagLocationbox3 != '':
+                if federalReservesFlagContent != '' and federalReservesFlagLocation != '':
                     return '[+] Flag Already Exists on Machine'
                 else:
-                    flagContentbox3 = flagContent
-                    flagLocationbox3 = flagLocation
-                    box3Owned = True
+                    federalReservesFlagContent = flagContent
+                    federalReservesFlagLocation = flagLocation
+                    federalReservesOwned = True
                     print(f'[+] Red team succesfully uploaded flag onto machine')
                     return f'[+] Red team succesfully uploaded flag onto machine'
-        elif box == 'box4':
+        elif box == 'nationalarchives':
             if team == 'blue':
-                if flagContentbox4 != '' and flagLocationbox4 != '':
-                    if flagContent == flagContentbox4 and flagLocation == flagLocationbox4:
-                        flagContentbox4 = ''
-                        flagLocationbox4 = ''
-                        box4Owned = False
+                if nationalArchivesFlagContent != '' and nationalArchivesFlagLocation != '':
+                    if flagContent == nationalArchivesFlagContent and flagLocation == nationalArchivesFlagLocation:
+                        nationalArchivesFlagContent = ''
+                        nationalArchivesFlagLocation = ''
+                        nationalArchivesOwned = False
                         print('[+] Blue Team Removed Flag on machine')
                         return '[+] Blue Team Removed Flag on machine'
                     else:
                         return '[+] Try again seems like that was not correct'
             elif team == 'red':
-                if flagContentbox4 != '' and flagLocationbox4 != '':
+                if nationalArchivesFlagContent != '' and nationalArchivesFlagLocation != '':
                     return '[+] Flag Already Exists on Machine'
                 else:
-                    flagContentbox4 = flagContent
-                    flagLocationbox4 = flagLocation
-                    box4Owned = True
+                    nationalArchivesFlagContent = flagContent
+                    nationalArchivesFlagLocation = flagLocation
+                    nationalArchivesOwned = True
                     print(f'[+] Red team succesfully uploaded flag onto machine')
                     return f'[+] Red team succesfully uploaded flag onto machine'
-        elif box == 'box5':
+        elif box == 'federaltradecommissions':
             if team == 'blue':
-                if flagContentbox5 != '' and flagLocationbox5 != '':
-                    if flagContent == flagContentbox5 and flagLocation == flagLocationbox5:
-                        flagContentbox5 = ''
-                        flagLocationbox5 = ''
-                        box5Owned = False
+                if federalTradeCommissionsFlagContent != '' and federalTradeCommissionsFlagLocation != '':
+                    if flagContent == federalTradeCommissionsFlagContent and flagLocation == federalTradeCommissionsFlagLocation:
+                        federalTradeCommissionsFlagContent = ''
+                        federalTradeCommissionsFlagLocation = ''
+                        federalTradeCommissionsOwned = False
                         print('[+] Blue Team Removed Flag on machine')
                         return '[+] Blue Team Removed Flag on machine'
                     else:
                         return '[+] Try again seems like that was not correct'
             elif team == 'red':
-                if flagContentbox5 != '' and flagLocationbox5 != '':
+                if federalTradeCommissionsFlagContent != '' and federalTradeCommissionsFlagLocation != '':
                     return '[+] Flag Already Exists on Machine'
                 else:
-                    flagContentbox5 = flagContent
-                    flagLocationbox5 = flagLocation
-                    box5Owned = True
+                    federalTradeCommissionsFlagContent = flagContent
+                    federalTradeCommissionsFlagLocation = flagLocation
+                    federalTradeCommissionsOwned = True
                     print(f'[+] Red team succesfully uploaded flag onto machine')
                     return f'[+] Red team succesfully uploaded flag onto machine'
-        elif box == 'box6':
+        elif box == 'area51':
             if team == 'blue':
-                if flagContentbox6 != '' and flagLocationbox6 != '':
-                    if flagContent == flagContentbox6 and flagLocation == flagLocationbox6:
-                        flagContentbox6 = ''
-                        flagLocationbox6 = ''
-                        box6Owned = False
+                if area51FlagContent != '' and area51FlagLocation != '':
+                    if flagContent == area51FlagContent and flagLocation == area51FlagLocation:
+                        area51FlagContent = ''
+                        area51FlagLocation = ''
+                        area51Owned = False
                         print('[+] Blue Team Removed Flag on machine')
                         return '[+] Blue Team Removed Flag on machine'
                     else:
                         return '[+] Try again seems like that was not correct'
             elif team == 'red':
-                if flagContentbox6 != '' and flagLocationbox6 != '':
+                if area51FlagContent != '' and area51FlagLocation != '':
                     return '[+] Flag Already Exists on Machine'
                 else:
-                    flagContentbox6 = flagContent
-                    flagLocationbox6 = flagLocation
-                    box6Owned = True
+                    area51FlagContent = flagContent
+                    area51FlagLocation = flagLocation
+                    area51Owned = True
                     print(f'[+] Red team succesfully uploaded flag onto machine')
                     return f'[+] Red team succesfully uploaded flag onto machine'
-        elif box == 'box7':
+        elif box == 'pentagon':
             if team == 'blue':
-                if flagContentbox7 != '' and flagLocationbox7 != '':
-                    if flagContent == flagContentbox7 and flagLocation == flagLocationbox7:
-                        flagContentbox7 = ''
-                        flagLocationbox7 = ''
-                        box7Owned = False
+                if pentagonFlagContent != '' and pentagonFlagLocation != '':
+                    if flagContent == pentagonFlagContent and flagLocation == pentagonFlagLocation:
+                        pentagonFlagContent = ''
+                        pentagonFlagLocation = ''
+                        pentagonOwned = False
                         print('[+] Blue Team Removed Flag on machine')
                         return '[+] Blue Team Removed Flag on machine'
                     else:
                         return '[+] Try again seems like that was not correct'
             elif team == 'red':
-                if flagContentbox7 != '' and flagLocationbox7 != '':
+                if pentagonFlagContent != '' and pentagonFlagLocation != '':
                     return '[+] Flag Already Exists on Machine'
                 else:
-                    flagContentbox7 = flagContent
-                    flagLocationbox7 = flagLocation
-                    box7Owned = True
+                    pentagonFlagContent = flagContent
+                    pentagonFlagLocation = flagLocation
+                    pentagonOwned = True
                     print(f'[+] Red team succesfully uploaded flag onto machine')
                     return f'[+] Red team succesfully uploaded flag onto machine'
-        elif box == 'box8':
+        elif box == 'whitehouse':
             if team == 'blue':
-                if flagContentbox8 != '' and flagLocationbox8 != '':
-                    if flagContent == flagContentbox8 and flagLocation == flagLocationbox8:
-                        flagContentbox8 = ''
-                        flagLocationbox8 = ''
-                        box8Owned = False
+                if whiteHouseFlagContent != '' and whiteHouseFlagLocation != '':
+                    if flagContent == whiteHouseFlagContent and flagLocation == whiteHouseFlagLocation:
+                        whiteHouseFlagContent = ''
+                        whiteHouseFlagLocation = ''
+                        whiteHouseOwned = False
                         print('[+] Blue Team Removed Flag on machine')
                         return '[+] Blue Team Removed Flag on machine'
                     else:
                         return '[+] Try again seems like that was not correct'
             elif team == 'red':
-                if flagContentbox8 != '' and flagLocationbox8 != '':
+                if whiteHouseFlagContent != '' and whiteHouseFlagLocation != '':
                     return '[+] Flag Already Exists on Machine'
                 else:
-                    flagContentbox8 = flagContent
-                    flagLocationbox8 = flagLocation
-                    box8Owned = True
+                    whiteHouseFlagContent = flagContent
+                    whiteHouseFlagLocation = flagLocation
+                    whiteHouseOwned = True
                     print(f'[+] Red team succesfully uploaded flag onto machine')  
                     return f'[+] Red team succesfully uploaded flag onto machine'        
 
@@ -330,51 +330,51 @@ def pointsUpdated():
     global blueTeamScore
     global roundCount
 
-    global box1Owned
-    global box2Owned
-    global box3Owned
-    global box4Owned
-    global box5Owned
-    global box6Owned
-    global box7Owned
-    global box8Owned
+    global houseofrepresentativesOwned
+    global supremeCourtOwned
+    global federalReservesOwned
+    global nationalArchivesOwned
+    global federalTradeCommissionsOwned
+    global area51Owned
+    global pentagonOwned
+    global whiteHouseOwned
 
-    if(box1Owned):
+    if(houseofrepresentativesOwned):
         redTeamScore += 1
     else:
         blueTeamScore += 1
 
-    if(box2Owned):
+    if(supremeCourtOwned):
         redTeamScore += 1
     else:
         blueTeamScore += 1
 
-    if(box3Owned):
+    if(federalReservesOwned):
         redTeamScore += 1
     else:
         blueTeamScore += 1
 
-    if(box4Owned):
+    if(nationalArchivesOwned):
         redTeamScore += 1
     else:
         blueTeamScore += 1
 
-    if(box5Owned):
+    if(federalTradeCommissionsOwned):
         redTeamScore += 1
     else:
         blueTeamScore += 1
 
-    if(box6Owned):
+    if(area51Owned):
         redTeamScore += 1
     else:
         blueTeamScore += 1
 
-    if(box7Owned):
+    if(pentagonOwned):
         redTeamScore += 1
     else:
         blueTeamScore += 1
 
-    if(box8Owned):
+    if(whiteHouseOwned):
         redTeamScore += 5
     else:
         blueTeamScore += 5
