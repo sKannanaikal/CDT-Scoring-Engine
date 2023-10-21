@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>World War 3</title>
+  </head>
+  <body>
+    <h4 style="text-align: center; color: darkred; font-size: 50px;" id="roundCounter">Round: {{roundCount}}</h4>
+    <div id="scoring-table">
+      <div style="text-align: center; margin-left: 100px; margin-right: 50px; width: 40%; display: inline-block;" id="red-team-scoring">
+        <h1>Red Team Score</h1>
+        <h1 id="rscore">{{redTeamScore}}</h1>
+      </div>
+      <div style="text-align: center; margin-right: 100px; margin-left: 50px; width: 40%; display: inline-block;" id="blue-team-scoring">
+        <h1>Blue Team Score</h1>
+        <h1 id="bscore">{{blueTeamScore}}</h1>
+      </div>
+    </div>
+	<div id="infection-map">
+        <div id="highestlevel" style="display: flex; justify-content: center; align-items: center;">
+          {% if box1Owned == True %}
+          <div id="box1" class="rectangle" style="background-color: {{redTeamColor}};">
+            <h1>box1</h1>
+          </div>
+          {% else %}
+          <div id="box1" class="rectangle" style="background-color: {{blueTeamColor}};">
+            <h1>box1</h1>
+          </div>
+          {% endif %}
+        </div>
+        <div id="fourthlevel" style="display: flex; justify-content: center; align-items: center;">
+          {% if box2Owned == True %}
+          <div id="box2" class="rectangle" style="background-color: {{redTeamColor}};">
+            <h1>box2</h1>
+          </div>
+          {% else %}
+          <div id="box2" class="rectangle" style="background-color: {{blueTeamColor}};">
+            <h1>box2</h1>
+          </div>
+          {% endif %}
+        </div>
+        <div id="thirdLevel" style="display: flex; justify-content: center; align-items: center;">
+          {% if box3Owned == True %}
+          <div id="box3" class="rectangle" style="background-color: {{redTeamColor}};">
+            <h1>box3</h1>
+          </div>
+          {% else %}
+          <div id="box3" class="rectangle" style="background-color: {{blueTeamColor}};">
+            <h1>box3</h1>
+          </div>
+          {% endif %}
+          {% if box4Owned == True %}
+          <div id="box4" class="rectangle" style="background-color: {{redTeamColor}};">
+            <h1>box4</h1>
+        </div>
+        {% else %}
+        <div id="box4" class="rectangle" style="background-color: {{blueTeamColor}};">
+          <h1>box4</h1>
+      </div>
+      {% endif %}
+        </div>
+        <div id="secondlevel" style="display: flex; justify-content: center; align-items: center;">
+          {% if box5Owned == True %}
+          <div id="box5" class="rectangle" style="background-color: {{redTeamColor}};">
+            <h1>box5</h1>
+          </div>
+          {% else %}
+          <div id="box5" class="rectangle" style="background-color: {{blueTeamColor}};">
+            <h1>box5</h1>
+          </div>
+          {% endif %}
+
+          {% if box6Owned == True %}
+          <div id="box6" class="rectangle" style="background-color: {{redTeamColor}};">
+            <h1>box6</h1>
+        </div>
+        {% else %}
+        <div id="box6" class="rectangle" style="background-color: {{blueTeamColor}};">
+          <h1>box6</h1>
+      </div>
+      {% endif %}
+        </div>
+        <div id="lowestLevel" style="display: flex; justify-content: center; align-items: center;">
+          {% if box7Owned == True %}
+          <div id="box7" class="rectangle" style="background-color: {{redTeamColor}};">
+            <h1>box7</h1>
+          </div>
+          {% else %}
+          <div id="box7" class="rectangle" style="background-color: {{blueTeamColor}};">
+            <h1>box7</h1>
+          </div>
+          {% endif %}
+          {% if box8Owned == True %}
+          <div id="box8" class="rectangle" style="background-color: {{redTeamColor}};">
+            <h1>box8</h1>
+        </div>
+          {% else %}
+          <div id="box8" class="rectangle" style="background-color: {{blueTeamColor}};">
+            <h1>box8</h1>
+        </div>
+        {% endif %}
+        </div>
+    </div>
+  </body>
+
+  <script>
+    function timedRefresh(timeoutPeriod) {
+      setTimeout("location.reload(true);",timeoutPeriod);
+    }
+    
+    window.onload = timedRefresh(1000);
+    </script>
+
+  <style>
+    .modal {
+      display: none; /* Hidden by default */
+      position: fixed; /* Stay in place */
+      z-index: 1; /* Sit on top */
+      left: 0;
+      top: 0;
+      width: 100%; /* Full width */
+      height: 100%; /* Full height */
+      overflow: auto; /* Enable scroll if needed */
+      background-color: rgb(0,0,0); /* Fallback color */
+      background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+    }
+
+    /* Modal Content/Box */
+    .modal-content {
+      background-color: #fefefe;
+      margin: 15% auto; /* 15% from the top and centered */
+      padding: 20px;
+      border: 1px solid #888;
+      width: 80%; /* Could be more or less, depending on screen size */
+    }
+
+    /* The Close Button */
+    .close {
+      color: #aaa;
+      float: right;
+      font-size: 28px;
+      font-weight: bold;
+    }
+
+    .close:hover, .close:focus {
+      color: black;
+      text-decoration: none;
+      cursor: pointer;
+    }
+
+    .rectangle {
+      height: 100px;
+      width: 12%;
+      margin-top: 25px;
+      margin-bottom: 25px;
+      margin-left: 10px;
+      margin-right: 10px;
+      text-align: center;
+      display: inline-block;
+    }
+
+    </style>
+</html>
