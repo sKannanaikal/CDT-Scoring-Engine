@@ -49,7 +49,7 @@ def homePage():
     return render_template("index.html", redTeamScore=redTeamScore, blueTeamScore=blueTeamScore, redTeamColor=redColorHexCode, blueTeamColor=blueColorHexCode, 
                            roundCount=roundCount, box1Owned=box1Owned, box2Owned=box2Owned, box3Owned=box3Owned, box4Owned=box4Owned,
                            box5Owned=box5Owned, box6Owned=box6Owned, box7Owned=box7Owned, box8Owned=box8Owned)
-
+#update this shit
 def flagToggleVerification(team, flagContent, flagLocation, box):
     global box1Owned
     global box2Owned
@@ -153,22 +153,160 @@ def box1Toggle():
     if request.method == 'POST':
         team = request.form['team']
         box = request.form['hostname']
+        flagContent = request.form['flag']
+        flagLocation = request.form['location']
         if box == 'box1':
-            flagToggleVerification(team, flagContentbox1, flagLocationbox1, box)
+            if team == 'blue':
+                if flagContentbox1 != '' and flagLocationbox1 != '':
+                    if flagContent == flagContentbox1 and flagLocation == flagLocationbox1:
+                        flagContentbox1 = ''
+                        flagLocationbox1 = ''
+                        box1Owned = False
+                        print('[+] Blue Team Removed Flag on machine')
+                        return '[+] Blue Team Removed Flag on machine'
+                    else:
+                        return '[+] Try again seems like that was not correct'
+            elif team == 'red':
+                if flagContentbox1 != '' and flagLocationbox1 != '':
+                    return '[+] Flag Already Exists on Machine'
+                else:
+                    flagContentbox1 = flagContent
+                    flagLocationbox1 = flagLocation
+                    box1Owned = True
+                    print(f'[+] Red team succesfully uploaded flag onto machine')
         elif box == 'box2':
-            flagToggleVerification(team, flagContentbox2, flagLocationbox2, box)
+            if team == 'blue':
+                if flagContentbox2 != '' and flagLocationbox2 != '':
+                    if flagContent == flagContentbox2 and flagLocation == flagLocationbox2:
+                        flagContentbox2 = ''
+                        flagLocationbox2 = ''
+                        box2Owned = False
+                        print('[+] Blue Team Removed Flag on machine')
+                        return '[+] Blue Team Removed Flag on machine'
+                    else:
+                        return '[+] Try again seems like that was not correct'
+            elif team == 'red':
+                if flagContentbox2 != '' and flagLocationbox2 != '':
+                    return '[+] Flag Already Exists on Machine'
+                else:
+                    flagContentbox2 = flagContent
+                    flagLocationbox2 = flagLocation
+                    box2Owned = True
+                    print(f'[+] Red team succesfully uploaded flag onto machine')
         elif box == 'box3':
-            flagToggleVerification(team, flagContentbox3, flagLocationbox3, box)
+            if team == 'blue':
+                if flagContentbox3 != '' and flagLocationbox3 != '':
+                    if flagContent == flagContentbox3 and flagLocation == flagLocationbox3:
+                        flagContentbox3 = ''
+                        flagLocationbox3 = ''
+                        box3Owned = False
+                        print('[+] Blue Team Removed Flag on machine')
+                        return '[+] Blue Team Removed Flag on machine'
+                    else:
+                        return '[+] Try again seems like that was not correct'
+            elif team == 'red':
+                if flagContentbox3 != '' and flagLocationbox3 != '':
+                    return '[+] Flag Already Exists on Machine'
+                else:
+                    flagContentbox3 = flagContent
+                    flagLocationbox3 = flagLocation
+                    box3Owned = True
+                    print(f'[+] Red team succesfully uploaded flag onto machine')
         elif box == 'box4':
-            flagToggleVerification(team, flagContentbox4, flagLocationbox4, box)
+            if team == 'blue':
+                if flagContentbox4 != '' and flagLocationbox4 != '':
+                    if flagContent == flagContentbox4 and flagLocation == flagLocationbox4:
+                        flagContentbox4 = ''
+                        flagLocationbox4 = ''
+                        box4Owned = False
+                        print('[+] Blue Team Removed Flag on machine')
+                        return '[+] Blue Team Removed Flag on machine'
+                    else:
+                        return '[+] Try again seems like that was not correct'
+            elif team == 'red':
+                if flagContentbox4 != '' and flagLocationbox4 != '':
+                    return '[+] Flag Already Exists on Machine'
+                else:
+                    flagContentbox4 = flagContent
+                    flagLocationbox4 = flagLocation
+                    box4Owned = True
+                    print(f'[+] Red team succesfully uploaded flag onto machine')
         elif box == 'box5':
-            flagToggleVerification(team, flagContentbox5, flagLocationbox5, box)
+            if team == 'blue':
+                if flagContentbox5 != '' and flagLocationbox5 != '':
+                    if flagContent == flagContentbox5 and flagLocation == flagLocationbox5:
+                        flagContentbox5 = ''
+                        flagLocationbox5 = ''
+                        box5Owned = False
+                        print('[+] Blue Team Removed Flag on machine')
+                        return '[+] Blue Team Removed Flag on machine'
+                    else:
+                        return '[+] Try again seems like that was not correct'
+            elif team == 'red':
+                if flagContentbox5 != '' and flagLocationbox5 != '':
+                    return '[+] Flag Already Exists on Machine'
+                else:
+                    flagContentbox5 = flagContent
+                    flagLocationbox5 = flagLocation
+                    box5Owned = True
+                    print(f'[+] Red team succesfully uploaded flag onto machine')
         elif box == 'box6':
-            flagToggleVerification(team, flagContentbox6, flagLocationbox6, box)
+            if team == 'blue':
+                if flagContentbox6 != '' and flagLocationbox6 != '':
+                    if flagContent == flagContentbox6 and flagLocation == flagLocationbox6:
+                        flagContentbox6 = ''
+                        flagLocationbox6 = ''
+                        box6Owned = False
+                        print('[+] Blue Team Removed Flag on machine')
+                        return '[+] Blue Team Removed Flag on machine'
+                    else:
+                        return '[+] Try again seems like that was not correct'
+            elif team == 'red':
+                if flagContentbox6 != '' and flagLocationbox6 != '':
+                    return '[+] Flag Already Exists on Machine'
+                else:
+                    flagContentbox6 = flagContent
+                    flagLocationbox6 = flagLocation
+                    box6Owned = True
+                    print(f'[+] Red team succesfully uploaded flag onto machine')
         elif box == 'box7':
-            flagToggleVerification(team, flagContentbox7, flagLocationbox7, box)
+            if team == 'blue':
+                if flagContentbox7 != '' and flagLocationbox7 != '':
+                    if flagContent == flagContentbox7 and flagLocation == flagLocationbox7:
+                        flagContentbox7 = ''
+                        flagLocationbox7 = ''
+                        box7Owned = False
+                        print('[+] Blue Team Removed Flag on machine')
+                        return '[+] Blue Team Removed Flag on machine'
+                    else:
+                        return '[+] Try again seems like that was not correct'
+            elif team == 'red':
+                if flagContentbox7 != '' and flagLocationbox7 != '':
+                    return '[+] Flag Already Exists on Machine'
+                else:
+                    flagContentbox7 = flagContent
+                    flagLocationbox7 = flagLocation
+                    box7Owned = True
+                    print(f'[+] Red team succesfully uploaded flag onto machine')
         elif box == 'box8':
-            flagToggleVerification(team, flagContentbox8, flagLocationbox8, box)            
+            if team == 'blue':
+                if flagContentbox8 != '' and flagLocationbox8 != '':
+                    if flagContent == flagContentbox8 and flagLocation == flagLocationbox8:
+                        flagContentbox8 = ''
+                        flagLocationbox8 = ''
+                        box8Owned = False
+                        print('[+] Blue Team Removed Flag on machine')
+                        return '[+] Blue Team Removed Flag on machine'
+                    else:
+                        return '[+] Try again seems like that was not correct'
+            elif team == 'red':
+                if flagContentbox8 != '' and flagLocationbox8 != '':
+                    return '[+] Flag Already Exists on Machine'
+                else:
+                    flagContentbox8 = flagContent
+                    flagLocationbox8 = flagLocation
+                    box8Owned = True
+                    print(f'[+] Red team succesfully uploaded flag onto machine')          
 
 def pointsUpdated():
     global redTeamScore
