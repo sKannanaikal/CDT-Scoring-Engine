@@ -20,85 +20,85 @@
     </div>
 	<div id="infection-map">
         <div id="highestlevel" style="display: flex; justify-content: center; align-items: center;">
-          {% if box1Owned == True %}
+          {% if whiteHouseOwned == True %}
           <div id="box1" class="rectangle" style="background-color: {{redTeamColor}};">
-            <h1>box1</h1>
+            <h1>White House</h1>
           </div>
           {% else %}
           <div id="box1" class="rectangle" style="background-color: {{blueTeamColor}};">
-            <h1>box1</h1>
+            <h1>White House</h1>
           </div>
           {% endif %}
         </div>
         <div id="fourthlevel" style="display: flex; justify-content: center; align-items: center;">
-          {% if box2Owned == True %}
+          {% if pentagonOwned == True %}
           <div id="box2" class="rectangle" style="background-color: {{redTeamColor}};">
-            <h1>box2</h1>
+            <h1>Pentagon</h1>
           </div>
           {% else %}
           <div id="box2" class="rectangle" style="background-color: {{blueTeamColor}};">
-            <h1>box2</h1>
+            <h1>Pentagon</h1>
           </div>
           {% endif %}
         </div>
         <div id="thirdLevel" style="display: flex; justify-content: center; align-items: center;">
-          {% if box3Owned == True %}
+          {% if area51Owned == True %}
           <div id="box3" class="rectangle" style="background-color: {{redTeamColor}};">
-            <h1>box3</h1>
+            <h1>Area 51</h1>
           </div>
           {% else %}
           <div id="box3" class="rectangle" style="background-color: {{blueTeamColor}};">
-            <h1>box3</h1>
+            <h1>Area 51</h1>
           </div>
           {% endif %}
-          {% if box4Owned == True %}
+          {% if federalTradeCommissionsOwned == True %}
           <div id="box4" class="rectangle" style="background-color: {{redTeamColor}};">
-            <h1>box4</h1>
+            <h1>Federal Trade Commissions</h1>
         </div>
         {% else %}
         <div id="box4" class="rectangle" style="background-color: {{blueTeamColor}};">
-          <h1>box4</h1>
+          <h1>Federal Trade Commissions</h1>
       </div>
       {% endif %}
         </div>
         <div id="secondlevel" style="display: flex; justify-content: center; align-items: center;">
-          {% if box5Owned == True %}
+          {% if nationalArchivesOwned == True %}
           <div id="box5" class="rectangle" style="background-color: {{redTeamColor}};">
-            <h1>box5</h1>
+            <h1>National Archives</h1>
           </div>
           {% else %}
           <div id="box5" class="rectangle" style="background-color: {{blueTeamColor}};">
-            <h1>box5</h1>
+            <h1>National Archives</h1>
           </div>
           {% endif %}
 
-          {% if box6Owned == True %}
+          {% if federalReservesOwned == True %}
           <div id="box6" class="rectangle" style="background-color: {{redTeamColor}};">
-            <h1>box6</h1>
+            <h1>Federal Rserves</h1>
         </div>
         {% else %}
         <div id="box6" class="rectangle" style="background-color: {{blueTeamColor}};">
-          <h1>box6</h1>
+          <h1>Federal Reserves</h1>
       </div>
       {% endif %}
         </div>
         <div id="lowestLevel" style="display: flex; justify-content: center; align-items: center;">
-          {% if box7Owned == True %}
+          {% if supremeCourtOwned == True %}
           <div id="box7" class="rectangle" style="background-color: {{redTeamColor}};">
-            <h1>box7</h1>
+            <h1>Supreme Court</h1>
           </div>
           {% else %}
           <div id="box7" class="rectangle" style="background-color: {{blueTeamColor}};">
-            <h1>box7</h1>
+            <h1>Supreme Court</h1>
           </div>
           {% endif %}
-          {% if box8Owned == True %}
+          {% if houseofrepresentativesOwned == True %}
           <div id="box8" class="rectangle" style="background-color: {{redTeamColor}};">
-            <h1>box8</h1>
+            <h1>House of Representatives</h1>
         </div>
           {% else %}
           <div id="box8" class="rectangle" style="background-color: {{blueTeamColor}};">
-            <h1>box8</h1>
+            <h1>House of Representatives</h1>
         </div>
         {% endif %}
         </div>
@@ -110,7 +110,7 @@
       setTimeout("location.reload(true);",timeoutPeriod);
     }
     
-    window.onload = timedRefresh(1000 * 61);
+    window.onload = timedRefresh(1000);
     </script>
 
   <style>
