@@ -26,50 +26,28 @@ flagLocationbox7 = '' #update for all boxes
 flagContentbox8 = '' #update for all boxes
 flagLocationbox8 = '' #update for all boxes
 
-box1Owned = True
+box1Owned = False
 box2Owned = False
 box3Owned = False
 box4Owned = False
 box5Owned = False
 box6Owned = False
-box7Owned = True
-box8Owned = True
+box7Owned = False
+box8Owned = False
 
-timerBegin = False
-
-redTeamScore = 10000
-blueTeamScore = 995
+redTeamScore = 0
+blueTeamScore = 0
 
 blueColorHexCode = '#003cff'
 redColorHexCode = '#ff0800'    
 
-videoPlayerProc = None
 roundCount = 0
 
-def nukeLaunch():
-    global timerBegin
-    global videoPlayerProc 
-
-    if(videoPlayerProc == None and timerBegin == True):
-        videoPlayerProc = subprocess.Popen(["C:/Program Files/Windows Media Player/wmplayer.exe", 'C:\\Users\\Sean Kannanaikal\\Documents\\CDT Scoring Engine\\ufo.mp4']) #update this to the mp3 file
-    ##use a different function and check if the process already exists if its a nonzero value then don't start if it has been removed then change pid to 0 to know you can play again
-    if(timerBegin == False and videoPlayerProc != None):
-        os.kill(videoPlayerProc.pid, signal.SIGTERM)
-        videoPlayerProc = None
-
-def startCountdown():
-    if(flagContentbox1 != '' and flagContentbox2 != '' and 
-       flagContentbox3 != '' and flagContentbox4 != '' and 
-       flagContentbox5 != '' and flagContentbox6 != '' and 
-       flagContentbox7 != '' and flagContentbox8 != ''):
-        timerBegin = True
-    else:
-        timerBegin = False
 
 @app.route("/", methods = ['GET'])
 def homePage():
     return render_template("index.html", redTeamScore=redTeamScore, blueTeamScore=blueTeamScore, redTeamColor=redColorHexCode, blueTeamColor=blueColorHexCode, 
-                           startCountDown=timerBegin, roundCount=roundCount, box1Owned=box1Owned, box2Owned=box2Owned, box3Owned=box3Owned, box4Owned=box4Owned,
+                           roundCount=roundCount, box1Owned=box1Owned, box2Owned=box2Owned, box3Owned=box3Owned, box4Owned=box4Owned,
                            box5Owned=box5Owned, box6Owned=box6Owned, box7Owned=box7Owned, box8Owned=box8Owned)
 
 def flagToggleVerification(team, flagContent, flagLocation, box):
@@ -201,57 +179,48 @@ def pointsUpdated():
         redTeamScore += 1
     else:
         blueTeamScore += 1
-    
+
     if(box2Owned):
         redTeamScore += 1
     else:
         blueTeamScore += 1
-    
+
     if(box3Owned):
         redTeamScore += 1
     else:
         blueTeamScore += 1
-    
+
     if(box4Owned):
         redTeamScore += 1
     else:
         blueTeamScore += 1
-    
+
     if(box5Owned):
         redTeamScore += 1
     else:
         blueTeamScore += 1
-    
+
     if(box6Owned):
         redTeamScore += 1
     else:
         blueTeamScore += 1
-    
+
     if(box7Owned):
         redTeamScore += 1
     else:
         blueTeamScore += 1
-    
+
     if(box8Owned):
         redTeamScore += 5
     else:
         blueTeamScore += 5
-    
+
     roundCount += 1
     print(f'[+] Points Updated for round: {roundCount - 1} {redTeamScore} {blueTeamScore}')
 
 if __name__ == '__main__':
     pointsUpdater = BackgroundScheduler()
-    countDownChecker = BackgroundScheduler()
-    nukeLauncher = BackgroundScheduler()
-
     pointsUpdater.add_job(func=pointsUpdated, trigger="interval", seconds=60)
-    countDownChecker.add_job(func=startCountdown, trigger="interval", seconds=3)
-    nukeLauncher.add_job(func=nukeLaunch, trigger="interval", seconds=5)
-
     pointsUpdater.start()
-    countDownChecker.start()
-    nukeLauncher.start()
-
     app.run()
     atexit.register(lambda: pointsUpdater.shutdown())
