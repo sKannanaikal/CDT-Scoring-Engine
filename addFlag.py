@@ -13,7 +13,7 @@ def main():
         flagFile.write(flag)
 
     
-    scoringServer = f'http://192.168.100.10:80/{hostname}' 
+    scoringServer = f'http://192.168.100.10:80/flag' 
 
     data  = {'flag': f'{flag}','location': f'{filename}','team': 'red', 'hostname': {hostname}}
 
