@@ -49,87 +49,6 @@ def homePage():
     return render_template("index.html", redTeamScore=redTeamScore, blueTeamScore=blueTeamScore, redTeamColor=redColorHexCode, blueTeamColor=blueColorHexCode, 
                            roundCount=roundCount, houseofrepresentativesOwned=houseofrepresentativesOwned, supremeCourtOwned=supremeCourtOwned, federalReservesOwned=federalReservesOwned, nationalArchivesOwned=nationalArchivesOwned,
                            federalTradeCommissionsOwned=federalTradeCommissionsOwned, area51Owned=area51Owned, pentagonOwned=pentagonOwned, whiteHouseOwned=whiteHouseOwned)
-#update this shit
-def flagToggleVerification(team, flagContent, flagLocation, box):
-    global houseofrepresentativesOwned
-    global supremeCourtOwned
-    global federalReservesOwned
-    global nationalArchivesOwned
-    global federalTradeCommissionsOwned
-    global area51Owned
-    global pentagonOwned
-    global whiteHouseOwned
-
-    global houseofrepresentativesFlagContent
-    global houseofrepresentativesFlagLocation
-    global supremeCourtFlagContent
-    global supremeCourtFlagLocation
-    global federalReservesFlagContent
-    global federalReservesFlagLocation
-    global nationalArchivesFlagContent
-    global nationalArchivesFlagLocation
-    global federalTradeCommissionsFlagContent
-    global federalTradeCommissionsFlagLocation
-    global area51FlagContent
-    global area51FlagLocation
-    global pentagonFlagContent
-    global pentagonFlagLocation
-    global whiteHouseFlagContent
-    global whiteHouseFlagLocation
-
-    #there might be an issue here with local variabliization of the parametrs probably will not be referring to the same parameter
-    if team == 'red' and flagContent == '' and flagLocation == '':
-            flagContent = request.form['flag']
-            flagLocation = request.form['location']
-            print(f'[+] Red Team Succesfully Added a Flag onto {box}') # update the name of the boxes
-            print(f'{flagContent} at {flagLocation}')
-            if box == 'houseofrepresentatives':
-                houseofrepresentativesOwned = True
-            elif box == 'supremecourt':
-                supremeCourtOwned = True
-            elif box == 'federalreserves':
-                federalReservesOwned = True
-            elif box == 'nationalarchives':
-                nationalArchivesOwned = True
-            elif box == 'federaltradecommissions':
-                federalTradeCommissionsOwned = True
-            elif box == 'area51':
-                area51Owned = True
-            elif box == 'pentagon':
-                pentagonOwned = True
-            elif box == 'whitehouse':
-                whiteHouseOwned = True
-            return f'[+] Red Team Succesfully Added a Flag onto {box}'
-    elif team == 'blue' and flagContent != '' and flagLocation != '':
-        removalflagContent = request.form['flag']
-        removalflagLocation = request.form['location']
-        if(removalflagContent == flagContent and removalflagLocation == flagLocation):
-            flagContent = ''
-            flagLocation = ''
-            print(f'[+] Blue Team Succesfully Removed a Flag from {box}') # update the name of the boxes
-            if box == 'houseofrepresentatives':
-                houseofrepresentativesOwned = False
-            elif box == 'supremecourt':
-                supremeCourtOwned = False
-            elif box == 'federalreserves':
-                federalReservesOwned = False
-            elif box == 'nationalarchives':
-                nationalArchivesOwned = False
-            elif box == 'federaltradecommissions':
-                federalTradeCommissionsOwned = False
-            elif box == 'area51':
-                area51Owned = False
-            elif box == 'pentagon':
-                pentagonOwned = False
-            elif box == 'whitehouse':
-                whiteHouseOwned = False
-            return f'[+] Blue Team Succesfully Removed a Flag from {box}'
-        else:
-            return '[-] Thats not the right flag try again'
-    elif team == 'red' and flagLocation != '' and flagContent != '':
-        return f'[-] Flag already exists on {box} somewhere else.  Insertion of Flag Denied!'
-    elif team == 'blue' and flagContent == '' and flagLocation == '':
-        return f'[-] Flag does not exist on the {box}.  Removal of Flag Denied!'
 
 @app.route("/flag", methods = ['POST'])
 def houseofrepresentativesToggle():
@@ -164,7 +83,7 @@ def houseofrepresentativesToggle():
         box = request.form['hostname']
         flagContent = request.form['flag']
         flagLocation = request.form['location']
-        if box == 'houseofrepresentatives':
+        if box == 'houseofrepresentatives.us.gov':
             if team == 'blue':
                 if houseofrepresentativesFlagContent != '' and houseofrepresentativesFlagLocation != '':
                     if flagContent == houseofrepresentativesFlagContent and flagLocation == houseofrepresentativesFlagLocation:
@@ -184,7 +103,7 @@ def houseofrepresentativesToggle():
                     houseofrepresentativesOwned = True
                     print(f'[+] Red team succesfully uploaded flag onto machine')
                     return f'[+] Red team succesfully uploaded flag onto machine'
-        elif box == 'supremecourt':
+        elif box == 'supremecourt.us.gov':
             if team == 'blue':
                 if supremeCourtFlagContent != '' and supremeCourtFlagLocation != '':
                     if flagContent == supremeCourtFlagContent and flagLocation == supremeCourtFlagLocation:
@@ -204,7 +123,7 @@ def houseofrepresentativesToggle():
                     supremeCourtOwned = True
                     print(f'[+] Red team succesfully uploaded flag onto machine')
                     return f'[+] Red team succesfully uploaded flag onto machine'
-        elif box == 'federalreserves':
+        elif box == 'federalreserves.us.gov':
             if team == 'blue':
                 if federalReservesFlagContent != '' and federalReservesFlagLocation != '':
                     if flagContent == federalReservesFlagContent and flagLocation == federalReservesFlagLocation:
@@ -224,7 +143,7 @@ def houseofrepresentativesToggle():
                     federalReservesOwned = True
                     print(f'[+] Red team succesfully uploaded flag onto machine')
                     return f'[+] Red team succesfully uploaded flag onto machine'
-        elif box == 'nationalarchives':
+        elif box == 'nationalarchives.us.gov':
             if team == 'blue':
                 if nationalArchivesFlagContent != '' and nationalArchivesFlagLocation != '':
                     if flagContent == nationalArchivesFlagContent and flagLocation == nationalArchivesFlagLocation:
@@ -244,7 +163,7 @@ def houseofrepresentativesToggle():
                     nationalArchivesOwned = True
                     print(f'[+] Red team succesfully uploaded flag onto machine')
                     return f'[+] Red team succesfully uploaded flag onto machine'
-        elif box == 'federaltradecommissions':
+        elif box == 'federaltradecommissions.us.gov':
             if team == 'blue':
                 if federalTradeCommissionsFlagContent != '' and federalTradeCommissionsFlagLocation != '':
                     if flagContent == federalTradeCommissionsFlagContent and flagLocation == federalTradeCommissionsFlagLocation:
@@ -264,7 +183,7 @@ def houseofrepresentativesToggle():
                     federalTradeCommissionsOwned = True
                     print(f'[+] Red team succesfully uploaded flag onto machine')
                     return f'[+] Red team succesfully uploaded flag onto machine'
-        elif box == 'area51':
+        elif box == 'area51.us.gov':
             if team == 'blue':
                 if area51FlagContent != '' and area51FlagLocation != '':
                     if flagContent == area51FlagContent and flagLocation == area51FlagLocation:
@@ -284,7 +203,7 @@ def houseofrepresentativesToggle():
                     area51Owned = True
                     print(f'[+] Red team succesfully uploaded flag onto machine')
                     return f'[+] Red team succesfully uploaded flag onto machine'
-        elif box == 'pentagon':
+        elif box == 'pentagon.us.gov':
             if team == 'blue':
                 if pentagonFlagContent != '' and pentagonFlagLocation != '':
                     if flagContent == pentagonFlagContent and flagLocation == pentagonFlagLocation:
@@ -304,7 +223,7 @@ def houseofrepresentativesToggle():
                     pentagonOwned = True
                     print(f'[+] Red team succesfully uploaded flag onto machine')
                     return f'[+] Red team succesfully uploaded flag onto machine'
-        elif box == 'whitehouse':
+        elif box == 'whitehouse': #might not have to update but check
             if team == 'blue':
                 if whiteHouseFlagContent != '' and whiteHouseFlagLocation != '':
                     if flagContent == whiteHouseFlagContent and flagLocation == whiteHouseFlagLocation:
