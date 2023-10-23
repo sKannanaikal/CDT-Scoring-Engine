@@ -51,7 +51,7 @@ def homePage():
                            federalTradeCommissionsOwned=federalTradeCommissionsOwned, area51Owned=area51Owned, pentagonOwned=pentagonOwned, whiteHouseOwned=whiteHouseOwned)
 
 @app.route("/flag", methods = ['POST'])
-def houseofrepresentativesToggle():
+def ownershipToggle():
     global houseofrepresentativesOwned
     global supremeCourtOwned
     global federalReservesOwned
